@@ -1,46 +1,51 @@
-CPF = ""
+CPF = ''
 
-ValiCODE = CPF[9] + CPF[10]
+CodVerificador = CPF[9] + CPF[10]
 
-count_FirstVali01 = 10
-sum_Vali01 = 0
-count_FirstVali02 = 11
-sum_Vali02 = 0
+cont_Multiplicador = 10
+soma_Resultado = 0
 
-for number in range(0, len(CPF)-2):  
-  for caracter in CPF[number]:
-      caracter = int(caracter)    
-      result = caracter * count_FirstVali01
-      count_FirstVali01 -= 1
-      sum_Vali01 = result + sum_Vali01
+for index in range(0, len(CPF)-2):  
+   for caracter in CPF[index]:
+         caracter = int(caracter)    
+         resultado = caracter * cont_Multiplicador
+         cont_Multiplicador -= 1
+         soma_Resultado = resultado + soma_Resultado
 
-for number in range(0, len(CPF)-1):  
-  for caracter in CPF[number]:
-      caracter = int(caracter)  
-      resultt = caracter * count_FirstVali02
-      count_FirstVali02 -= 1 
-      sum_Vali02 = resultt + sum_Vali02
+CaracterValidador01 = soma_Resultado % 11 
+CaracterValidador01 -= 11
+CaracterValidador01 = abs(CaracterValidador01) 
 
-CharCODE1 = sum_Vali01 % 11 
-CharCODE1 -= 11
-CharCODE1 = abs(CharCODE1) 
+if CaracterValidador01 >= 10:
+   CaracterValidador01 = 0
 
-if CharCODE1 >= 10:
-   CharCODE1 = 0
-
-CharCODE1 = str(CharCODE1)
-
-CharCODE2 = sum_Vali02 % 11 
-CharCODE2 -= 11
-CharCODE2 = abs(CharCODE2)
-
-if CharCODE2 >= 10:
-   CharCODE2 = 0
-
-CharCODE2 = str(CharCODE2)
+CaracterValidador01 = str(CaracterValidador01)
 
 
-if CharCODE1 + CharCODE2 == ValiCODE:   
+cont_Multiplicador = 11
+soma_Resultado = 0
+
+for index in range(0, len(CPF)-1):  
+   for caracter in CPF[index]:
+         caracter = int(caracter)  
+         resultado = caracter * cont_Multiplicador
+         cont_Multiplicador -= 1 
+         soma_Resultado = resultado + soma_Resultado
+
+CaracterValidador02 = soma_Resultado % 11 
+CaracterValidador02 -= 11
+CaracterValidador02 = abs(CaracterValidador02)
+
+if CaracterValidador02 >= 10:
+   CaracterValidador02 = 0
+
+CaracterValidador02 = str(CaracterValidador02)
+
+
+if CaracterValidador01 + CaracterValidador02 == CodVerificador:   
    print('True')
 else:
    print('False')
+   
+
+
